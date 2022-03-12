@@ -1,11 +1,11 @@
 # demo
 
-name: demo
+name: Node CLI
 
 on:
     push:
         branches:
-            - course-stage3-week2-01-github-actions
+            - master
         paths:
             - '.github/workflows/**'
             - '__test__/**'
