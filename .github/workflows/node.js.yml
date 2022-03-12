@@ -1,31 +1,33 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# demo
 
-name: Node.js CI
+name: demo
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    push:
+        branches:
+            - course-stage3-week2-01-github-actions
+        paths:
+            - '.github/workflows/**'
+            - '__test__/**'
+            - 'src/**'
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2 # git pull ，第三方的 cations
+            - name: Use Node.js
+              uses: actions/setup-node@v1 # 安装 nodejs ， 第三方的 cations
+              with:
+                  node-version: 14
+            - name: print node version
+              run: |
+                  node -v
+                  npm -v
+                  echo 'hello github actions'
+    test2:
+        runs-on: ubuntu-latest
+        steps:
+            - run: touch a.txt
+            - run: echo 100 > a.txt
+            - run: cat a.txt
